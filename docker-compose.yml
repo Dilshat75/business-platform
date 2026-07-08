@@ -1,0 +1,45 @@
+services:
+
+  postgres:
+    image: postgres:16
+    container_name: business_postgres
+
+    restart: unless-stopped
+
+    env_file:
+      - .env
+
+    ports:
+      - "5432:5432"
+
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ${POSTGRES_USER} -d ${POSTGRES_DB}"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  backend:
+    build:
+      context: ./backend
+    container_name: business_backend
+
+    restart: unless-stopped
+
+    env_file:
+      - .env
+
+    ports:
+      - "${BACKEND_PORT:-8000}:8000"
+
+    volumes:
+      - ./backend:/app
+
+    depends_on:
+      postgres:
+        condition: service_healthy
+
+volumes:
+  postgres_data:
