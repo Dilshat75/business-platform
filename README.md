@@ -1,23 +1,43 @@
-# business-platform
+Business Platform
 
-Monorepo for the business platform application.
+Business Platform is a modern fullstack application for managing companies, employees and business processes.
 
-## Structure
+## Tech Stack
 
-```
-business-platform/
-├── backend/              # API and business logic
-├── frontend/             # Web application
-├── infrastructure/
-│   ├── nginx/            # Reverse proxy configuration
-│   ├── postgres/         # Database init scripts
-│   └── docker/           # Docker-related configs
-├── .env.example
-├── docker-compose.yml
-└── LICENSE
-```
+Backend
 
-## Getting started
+- Python
+- Django
+- Django REST Framework
+- PostgreSQL
+- Redis
+- Celery
 
-1. Copy `.env.example` to `.env` and adjust values.
-2. Run `docker compose up --build`.
+Frontend
+
+- React
+- TypeScript
+- Vite
+
+Infrastructure
+
+- Docker
+- Docker Compose
+- Nginx
+
+## Roadmap
+
+Sprint 1
+- Infrastructure
+
+Sprint 2
+- Authentication
+
+Sprint 3
+- Companies
+
+Sprint 4
+- Tasks
+
+Sprint 5
+- Audit Log
